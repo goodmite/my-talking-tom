@@ -38,7 +38,7 @@ var analyserNode, zeroGain;
 */
 
 export function saveAudio() {
-    debugger;
+
     return new Promise((resolve, reject) => {
         audioRecorder.exportWAV(_ => {
             const final = doneEncoding(_);
@@ -60,7 +60,7 @@ function gotBuffers(buffers) {
 }
 
 function doneEncoding(blob) {
-    debugger;
+
     const final = Recorder.setupDownload(blob, "myRecording" + ((recIndex < 10) ? "0" : "") + recIndex + ".wav");
     recIndex++;
     return final;
