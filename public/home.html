@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>pitch_shift</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="static/recorder.js"></script>
+  <style>
+
+  body {
+      background-color: #ccdddd
+}
+
+
+
+ 
+    #image {
+  position: absolute;
+  top: 15px;
+  left:50px;
+}
+  #absolute {
+position: absolute;
+top: 120px; 
+left: 45px;
+
+}
+#audio{
+position: absolute;
+top: 215px;
+left: 60px;
+
+
+}
+  #absolute1 {
+position: absolute;
+top: 290px;
+left: 60px;
+
+}
+#transcript{
+position: absolute;
+top: 420px;
+left: 60px;
+font-style:bold;
+font-size:1.2em;
+padding: 3px;
+}
+
+
+	
+
+
+  </style>
+</head>
+<body  style="width:100%;">
+
+
+ <div id="image" class="container">
+ 
+  <!--<img src="https://www.ramsoft.com/wp-content/uploads/2016/03/voice-recognition-ramsoft-icon1.png" height= "75" width="100"   style="float:left;"/>-->
+  <h1 style="font-family:Lucida Calligraphy;">Pitch Shifting System</h1>
+<!--<h4 style="font-family:Lucida Calligraphy;">Record an audio/Upload a .wav file with less than 10sec duration for best performance</h4> -->
+ </div>
+
+ 
+
+<div id="absolute" class="container" style="display:block;">
+
+  <form  id="modeform" action="#"  class="form-inline">
+  <!-- <h5><strong>Upload your audio file below</strong></h5>
+  <div class="form-group">
+  
+  
+    <input name="file" type="file" class="form-control" style="background-color:#ccdddd;border:0;padding:0;padding-top: 5px;width:auto;"/>
+	
+	</div> -->
+	<label>Mode</label>
+	<input name="modeselect" list="modes" />
+	  <datalist id="modes">
+    <option value="male">
+    <option value="female">
+    <option value="baby">
+    <option value="cat">
+    
+  </datalist>
+    <input type="submit" name="submit" value="submit"/>
+  </form>
+
+<!-- <h5><strong>Or</strong></h5> -->
+</div>
+
+
+<div id="audio">
+<h5><strong>Record your audio here</strong></h5>
+
+  <p>
+    <button id=startRecord onclick="startRecording()"><span class="glyphicon glyphicon-record" style="color:green;"></span> Start</button>
+    <button id=stopRecord onclick="stopRecording()"><span class="glyphicon glyphicon-stop" style="color:red;"></span> Stop</button>
+  </p>
+  <p>
+    <audio id=recordedAudio></audio>
+  </p>
+  <p>
+    <a id=audioDownload></a>
+  </p> 
+  <br/>
+  
+</div>
+
+<!-- <div id="absolute1">
+<audio controls>
+        <source id="source" src="" type="audio/wav">
+        Your browser does not support the audio element.
+    </audio>
+ </div> -->
+ 
+
+<script> 
+
+
+
+// TODO: This needs work. Submit button currently does not do anything.
+// Also, page does not get reloaded and therefore the results are not shown.
+// The POST request has to be done without AJAX.
+rec=null
+mode=null
+$("#modeform").submit(function(e) {
+
+        //prevent Default functionality
+        e.preventDefault();
+
+        //get the action-url of the form
+        mode=$("input[name='modeselect']").val();
+		console.log("mode changed");
+		});
+
+function startRecording() {
+  navigator.mediaDevices.getUserMedia({
+  audio: true
+})
+.then(stream => {
+  aCtx = new AudioContext();
+  streamSource = aCtx.createMediaStreamSource(stream);
+  rec = new Recorder(streamSource);
+  startRecord.disabled = true;
+  stopRecord.disabled = false;
+  audio = [];
+  recordedAudio.controls = false;
+  rec.record();
+  })
+  .catch(e => console.log(e));
+  
+  
+}
+
+function stopRecording() {
+  startRecord.disabled = false;
+  stopRecord.disabled = true;
+  
+  rec.stop()
+  rec.exportWAV((blob) => {
+  // now we could send this blob with an FormData too
+  $("#absolute1").css("display","None")
+  
+  submit(blob);
+});
+return false;
+}
+
+function submit(blob) {
+
+    var fd = new FormData();
+    //base64data = reader.result;
+    //console.log(base64data);
+    fd.append('file', blob, 'filename.wav');
+	fd.append('mode',mode);
+    $.ajax({
+      type: 'POST',
+      url: 'https://sheltered-plateau-08459.herokuapp.com/get_audio',
+      data: fd,
+      cache: false,
+      processData: false,
+      contentType: false,
+      enctype: 'multipart/form-data'
+    }).done(function(data) {
+      /*for(i=0;i<data["transcripts"].length;i++){
+	  $("#trans ul").append('<li>'+data["transcripts"][i]+'</li>');
+	  $("#trans1 ul").append('<li>'+data["transcripts1"][i]+'</li>');
+	  }
+	  
+	  $("#transcript").css("display",data["vis"])*/
+	  resp=data["data"]
+	  recordedAudio.src = "data:audio/wav;base64, "+resp//URL.createObjectURL(data);
+  
+ recordedAudio.controls = true;
+  
+  audioDownload.href = recordedAudio.src;
+  audioDownload.download = 'filename.wav';
+  audioDownload.innerHTML = 'Download';
+	 // $('audio #source').attr('src', data);
+              //  $('audio').get(0).load();
+               // $('audio').get(0).play();
+    });
+return false;
+  
+}
+
+</script>
+
+
+</body>
+</html>
