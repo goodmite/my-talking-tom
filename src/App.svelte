@@ -6,7 +6,7 @@
 
     export let name;
     const mode = "baby";
-    let blob = "";
+    let blob = "asdsadadadasda";
     let recording = false;
     const audioToggleHandler = () => {
         createAudioContext();
@@ -32,6 +32,7 @@
                         }).done(function (data) {
                             const resp = data["data"]
                             blob = "data:audio/wav;base64, " + resp//URL.createObjectURL(data);
+							document.getElementById('audio').src = blob;
                             //
                             // recordedAudio.controls = true;
                             //
@@ -50,6 +51,7 @@
 <main class="container">
 
     <Banner blob1="{blob}"/>
+	<audio controls  src="{blob}" id="audio"></audio>
     <AppBody audioToggleHandler="{audioToggleHandler}"/>
     <Modes/>
 
