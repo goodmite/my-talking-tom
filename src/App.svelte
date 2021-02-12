@@ -20,7 +20,7 @@
                         var fd = new FormData();
                         debugger;
                         fd.append('file', blob, 'filename.wav');
-                        // fd.append('mode', mode);
+                        fd.append('mode', mode);
                         window.jQuery.ajax({
                             type: 'POST',
                             url: 'https://sheltered-plateau-08459.herokuapp.com/get_audio',
