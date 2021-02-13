@@ -6,8 +6,12 @@
 </script>
 
 <div class="comp">
-    <div class="recorder-container {recording && 'c'}" on:click={_ => audioToggleHandler()}>
-        <i class="fa fa-microphone {recording && 's'}"></i>
+    <div class="recorder-container {recording && 'c'}" on:click={_ =>  {!recording && audioToggleHandler()}}>
+        {#if recording}
+            <i class="fa fa-circle {recording && 's'}"></i>
+        {:else}
+            <i class="fa fa-microphone"></i>
+        {/if}
     </div>
     <a style="display: none" id="save" href="#"><img src="img/save.svg"></a>
 </div>
@@ -30,7 +34,7 @@
         align-items: center;
     }
 
-    .fa-microphone {
+    .fa {
         font-size: 35px;
         color: #0000ffa3;
         cursor: pointer;
@@ -74,7 +78,7 @@
         width: 90px;
         height: 90px;
         border-radius: 50%;
-        cursor: pointer;
+        cursor: not-allowed !important;
         float: left;
     }
 
@@ -96,6 +100,7 @@
             box-shadow: 0 0 0px 5px rgba(26, 179, 255, 0), 0 0 0px 40px #ffffff, 0 0 0px 40px rgba(26, 179, 255, 0);
         }
     }
+
     @-moz-keyframes r0 {
         0% {
             box-shadow: 0 0 0px 5px rgba(26, 179, 255, 0), 0 0 0px 0px #ffffff, 0 0 0px 0px rgba(26, 179, 255, 0);
@@ -107,6 +112,7 @@
             box-shadow: 0 0 0px 5px rgba(26, 179, 255, 0), 0 0 0px 40px #ffffff, 0 0 0px 40px rgba(26, 179, 255, 0);
         }
     }
+
     @keyframes r0 {
         0% {
             box-shadow: 0 0 0px 5px rgba(26, 179, 255, 0), 0 0 0px 0px #ffffff, 0 0 0px 0px rgba(26, 179, 255, 0);
@@ -118,6 +124,7 @@
             box-shadow: 0 0 0px 5px rgba(26, 179, 255, 0), 0 0 0px 40px #ffffff, 0 0 0px 40px rgba(26, 179, 255, 0);
         }
     }
+
     @-webkit-keyframes r20 {
         from {
             box-shadow: 0 0 0px 5px #ff1a1a, 0 0 12px 10px #ffffff, 0 0 12px 14px #ff1a1a;
@@ -126,6 +133,7 @@
             box-shadow: 0 0 0px 5px rgba(255, 26, 26, 0), 0 0 4px 40px #ffffff, 0 0 4px 41px rgba(255, 26, 26, 0);
         }
     }
+
     @-moz-keyframes r20 {
         from {
             box-shadow: 0 0 0px 5px #ff1a1a, 0 0 12px 10px #ffffff, 0 0 12px 14px #ff1a1a;
@@ -134,6 +142,7 @@
             box-shadow: 0 0 0px 5px rgba(255, 26, 26, 0), 0 0 4px 40px #ffffff, 0 0 4px 41px rgba(255, 26, 26, 0);
         }
     }
+
     @keyframes r20 {
         from {
             box-shadow: 0 0 0px 5px #ff1a1a, 0 0 12px 10px #ffffff, 0 0 12px 14px #ff1a1a;
