@@ -5,15 +5,15 @@
     import {createAudioContext, initAudio, saveAudio, toggleRecording} from "./audio";
 
     export let name;
-    const mode = "baby";
+    let mode = "baby";
     let blob = "";
     let recording = false;
     const audioToggleHandler = () => {
+        recording = true;
         createAudioContext();
         initAudio();
         setTimeout(() => {
             toggleRecording(recording);
-            recording = !recording;
             setTimeout(() => {
                 saveAudio(_ => alert())
                     .then((blob) => {
@@ -32,7 +32,8 @@
                         }).done(function (data) {
                             const resp = data["data"]
                             blob = "data:audio/wav;base64, " + resp//URL.createObjectURL(data);
-							document.getElementById('audio').src = blob;
+                            document.getElementById('audio').src = blob;
+                            recording = false;
                             //
                             // recordedAudio.controls = true;
                             //
@@ -40,20 +41,27 @@
                             // audioDownload.download = 'filename.wav';
                             // audioDownload.innerHTML = 'Download';
 
-                        });
+                        }).fail(() => {
+                            recording = false;
+                        })
                     })
             }, 3000);
         }, 2000)
+    }
+
+
+    const changeMode = modeArg => {
+        mode = modeArg
+        alert(modeArg);
     }
 
 </script>
 
 <main class="container">
 
-    <Banner blob1="{blob}"/>
-	<audio controls  src="{blob}" id="audio"></audio>
-    <AppBody audioToggleHandler="{audioToggleHandler}"/>
-    <Modes/>
+    <Banner img="{'./img/' + mode + '.svg'}" blob1="{blob}"/>
+    <AppBody recording="{recording}" audioToggleHandler="{audioToggleHandler}"/>
+    <Modes changeModeFn="{changeMode}" mode="{mode}"/>
 
 </main>
 
@@ -65,7 +73,7 @@
         transform: translate(-50%, -50%);
         width: 50vh;
         height: 90vh;
-        background: red;
+        background: wheat;
         border-radius: 16px;
         overflow: hidden;
     }

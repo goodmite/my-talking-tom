@@ -1,15 +1,15 @@
 <script>
 
-
+    export let recording;
     export let audioToggleHandler;
 
 </script>
 
 <div class="comp">
-    <div class="recorder-container" on:click={_ => audioToggleHandler()}>
-        <i class="fa fa-microphone"></i>
+    <div class="recorder-container {recording && 'c'}" on:click={_ => audioToggleHandler()}>
+        <i class="fa fa-microphone {recording && 's'}"></i>
     </div>
-    <a id="save" href="#"><img src="img/save.svg"></a>
+    <a style="display: none" id="save" href="#"><img src="img/save.svg"></a>
 </div>
 
 <style>
@@ -32,6 +32,115 @@
 
     .fa-microphone {
         font-size: 35px;
+        color: #0000ffa3;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+    html {
+        background: #ffffff;
+        overflow: hidden;
+    }
+
+    #c {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -45px;
+    }
+
+    #o {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -67px;
+        margin-top: -22px;
+        z-index: 0;
+    }
+
+    .o2 {
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        cursor: pointer;
+        float: left;
+        border: 2px solid #ebebeb;
+    }
+
+    .s {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        cursor: pointer;
+        float: left;
+    }
+
+    .s:nth-child(1) {
+        /*background: #33bbff;*/
+        -webkit-animation: r0 1.2s 0s ease-out infinite;
+        -moz-animation: r0 1.2s 0s ease-out infinite;
+        animation: r0 1.2s 0s ease-out infinite;
+    }
+
+    @-webkit-keyframes r0 {
+        0% {
+            box-shadow: 0 0 0px 5px rgba(26, 179, 255, 0), 0 0 0px 0px #ffffff, 0 0 0px 0px rgba(26, 179, 255, 0);
+        }
+        10% {
+            box-shadow: 0 0 0px 5px #1ab3ff, 0 0 12px 10px #ffffff, 0 0 12px 14px #1ab3ff;
+        }
+        100% {
+            box-shadow: 0 0 0px 5px rgba(26, 179, 255, 0), 0 0 0px 40px #ffffff, 0 0 0px 40px rgba(26, 179, 255, 0);
+        }
+    }
+    @-moz-keyframes r0 {
+        0% {
+            box-shadow: 0 0 0px 5px rgba(26, 179, 255, 0), 0 0 0px 0px #ffffff, 0 0 0px 0px rgba(26, 179, 255, 0);
+        }
+        10% {
+            box-shadow: 0 0 0px 5px #1ab3ff, 0 0 12px 10px #ffffff, 0 0 12px 14px #1ab3ff;
+        }
+        100% {
+            box-shadow: 0 0 0px 5px rgba(26, 179, 255, 0), 0 0 0px 40px #ffffff, 0 0 0px 40px rgba(26, 179, 255, 0);
+        }
+    }
+    @keyframes r0 {
+        0% {
+            box-shadow: 0 0 0px 5px rgba(26, 179, 255, 0), 0 0 0px 0px #ffffff, 0 0 0px 0px rgba(26, 179, 255, 0);
+        }
+        10% {
+            box-shadow: 0 0 0px 5px #1ab3ff, 0 0 12px 10px #ffffff, 0 0 12px 14px #1ab3ff;
+        }
+        100% {
+            box-shadow: 0 0 0px 5px rgba(26, 179, 255, 0), 0 0 0px 40px #ffffff, 0 0 0px 40px rgba(26, 179, 255, 0);
+        }
+    }
+    @-webkit-keyframes r20 {
+        from {
+            box-shadow: 0 0 0px 5px #ff1a1a, 0 0 12px 10px #ffffff, 0 0 12px 14px #ff1a1a;
+        }
+        to {
+            box-shadow: 0 0 0px 5px rgba(255, 26, 26, 0), 0 0 4px 40px #ffffff, 0 0 4px 41px rgba(255, 26, 26, 0);
+        }
+    }
+    @-moz-keyframes r20 {
+        from {
+            box-shadow: 0 0 0px 5px #ff1a1a, 0 0 12px 10px #ffffff, 0 0 12px 14px #ff1a1a;
+        }
+        to {
+            box-shadow: 0 0 0px 5px rgba(255, 26, 26, 0), 0 0 4px 40px #ffffff, 0 0 4px 41px rgba(255, 26, 26, 0);
+        }
+    }
+    @keyframes r20 {
+        from {
+            box-shadow: 0 0 0px 5px #ff1a1a, 0 0 12px 10px #ffffff, 0 0 12px 14px #ff1a1a;
+        }
+        to {
+            box-shadow: 0 0 0px 5px rgba(255, 26, 26, 0), 0 0 4px 40px #ffffff, 0 0 4px 41px rgba(255, 26, 26, 0);
+        }
     }
 
 </style>
