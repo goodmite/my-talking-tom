@@ -36,7 +36,7 @@
 <div style="background: #0000ffa3; height: 40%;" class="banner-comp">
     <div
             class="banner-img"
-         style="background-image: url({img}); height: 100%;
+            style="background-image: url({img}); height: 100%;
     width: 100%; display: flex; justify-content: center; align-items: center">
 
         {#if !isPlaying}
@@ -68,7 +68,8 @@
         /*box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;*/
         filter: drop-shadow(0 1px 2px grey);
     }
-    .banner-img{
+
+    .banner-img {
         background-position: center;
         background-size: cover;
     }

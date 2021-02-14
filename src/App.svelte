@@ -52,7 +52,6 @@
 
     const changeMode = modeArg => {
         mode = modeArg
-        alert(modeArg);
     }
 
 </script>
@@ -60,8 +59,12 @@
 <main class="container">
 
     <Banner img="{'./img/' + mode + '.svg'}" blob1="{blob}"/>
-    <AppBody recording="{recording}" audioToggleHandler="{audioToggleHandler}"/>
-    <Modes changeModeFn="{changeMode}" mode="{mode}"/>
+    <div class="app-body-comp-wrapper">
+        <AppBody recording="{recording}" audioToggleHandler="{audioToggleHandler}"/>
+    </div>
+<!--    <div class="mode-comp-wrapper">-->
+        <Modes changeModeFn="{changeMode}" mode="{mode}"/>
+<!--    </div>-->
 
 </main>
 
@@ -76,6 +79,26 @@
         background: wheat;
         border-radius: 16px;
         overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+
+    @media only screen and (max-width: 600px) {
+        .container {
+            width: 100vw;
+            height: 100vh;
+            border-radius: 0px;
+        }
+    }
+
+    .app-body-comp-wrapper{
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .mode-comp-wrapper{
+        flex-grow: 1;
     }
 
 </style>

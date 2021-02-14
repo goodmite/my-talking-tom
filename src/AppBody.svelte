@@ -25,8 +25,8 @@
     }
 
     .recorder-container {
-        height: 90px;
-        width: 90px;
+        height: 140px;
+        width: 140px;
         border-radius: 50%;
         background: white;
         display: flex;
@@ -35,12 +35,22 @@
     }
 
     .fa {
-        font-size: 35px;
+        font-size: 50px;
         color: #0000ffa3;
         cursor: pointer;
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+
+    @media only screen and (max-width: 600px) {
+        .recorder-container{
+            width: 150px;
+            height: 150px;
+        }
+        .fa {
+            font-size: 60px;
+        }
     }
 
 
