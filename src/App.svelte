@@ -26,8 +26,15 @@
                         .then((blob) => {
                             var fd = new FormData();
                             RECORDING_STATE = ERECORDING_STATE.API;
+                            let tempMode = mode;
+                            if(mode === "man"){
+                                tempMode = "male";
+                            }
+                            if(mode === "woman"){
+                                tempMode = "female";
+                            }
                             fd.append('file', blob, 'filename.wav');
-                            fd.append('mode', mode);
+                            fd.append('mode', tempMode);
                             window.jQuery.ajax({
                                 type: 'POST',
                                 url: 'https://sheltered-plateau-08459.herokuapp.com/get_audio',
