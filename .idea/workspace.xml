@@ -21,11 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="44f11041-5f7a-44ed-b3bb-9c61591cda98" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/global.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Banner.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/Banner.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBody.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBody.svelte" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,17 +101,17 @@
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="93" y="93" width="1095" height="504" key="ShowDiffWithBranchDialog/0.0.1280.689@0.0.1280.689" timestamp="1613279038288" />
-    <state x="347" y="78" width="587" height="596" key="find.popup" timestamp="1613288437951">
+    <state x="347" y="78" width="587" height="596" key="find.popup" timestamp="1613288603298">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="347" y="78" width="587" height="596" key="find.popup/0.0.1280.689@0.0.1280.689" timestamp="1613288437951" />
+    <state x="347" y="78" width="587" height="596" key="find.popup/0.0.1280.689@0.0.1280.689" timestamp="1613288603298" />
     <state x="297" y="153" key="run.anything.popup" timestamp="1613285390746">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="297" y="153" key="run.anything.popup/0.0.1280.689@0.0.1280.689" timestamp="1613285390746" />
-    <state x="303" y="10" width="672" height="678" key="search.everywhere.popup" timestamp="1613287316867">
+    <state x="303" y="10" width="672" height="678" key="search.everywhere.popup" timestamp="1613288712376">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="303" y="10" width="672" height="678" key="search.everywhere.popup/0.0.1280.689@0.0.1280.689" timestamp="1613287316867" />
+    <state x="303" y="10" width="672" height="678" key="search.everywhere.popup/0.0.1280.689@0.0.1280.689" timestamp="1613288712376" />
   </component>
 </project>

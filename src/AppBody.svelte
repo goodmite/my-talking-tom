@@ -25,7 +25,7 @@
             <i class="fa fa-microphone"></i>
         {/if}
     </div>
-    <a style="display: none" id="save" href="#"><img src="img/save.svg"></a>
+    <a style="display: none" id="save" href="#"><img></a>
 </div>
 
 <style>
