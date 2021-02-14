@@ -43,7 +43,7 @@
     }
 
     .button img {
-        height: 23px;
+        height: 100%;
     }
 
     @media only screen and (max-width: 600px) {

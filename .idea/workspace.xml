@@ -20,7 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="44f11041-5f7a-44ed-b3bb-9c61591cda98" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/App.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Modes.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modes.svelte" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,10 +99,10 @@
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="93" y="93" width="1095" height="504" key="ShowDiffWithBranchDialog/0.0.1280.689@0.0.1280.689" timestamp="1613279038288" />
-    <state x="347" y="78" width="587" height="596" key="find.popup" timestamp="1613288916521">
+    <state x="347" y="78" width="587" height="596" key="find.popup" timestamp="1613289022976">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="347" y="78" width="587" height="596" key="find.popup/0.0.1280.689@0.0.1280.689" timestamp="1613288916521" />
+    <state x="347" y="78" width="587" height="596" key="find.popup/0.0.1280.689@0.0.1280.689" timestamp="1613289022976" />
     <state x="297" y="153" key="run.anything.popup" timestamp="1613285390746">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
