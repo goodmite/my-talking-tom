@@ -1,10 +1,13 @@
 <script>
     import {onMount} from "svelte";
+    import Carousel from '@beyonk/svelte-carousel'
 
     export let blob1 = "";
     export let playable = false;
+    let carousel;
     let audio;
     export let img;
+    export let mode;
     let isPlaying = false;
 
     function log(x) {
@@ -32,19 +35,45 @@
             })
         };
     })
+
+    $:{
+        if (mode && carousel) {
+
+            let index = 0;
+            if (mode === "baby") {
+                index = 1
+            }
+            if (mode === "child") {
+                index = 0;
+            }
+            if (mode === "man") {
+                index = 2;
+            }
+            if (mode === "woman") {
+                index = 3;
+            }
+            carousel.go(index);
+        }
+    }
 </script>
 
-<div style="background: #0000ffa3; height: 40%;" class="banner-comp">
+<div style="background: #0000ffa3; height: 40%; position:relative;" class="banner-comp" >
     <div
             class="banner-img"
-            style="background-image: url({img}); height: 100%;
+            style=" height: 100%;
     width: 100%; display: flex; justify-content: center; align-items: center">
+        <Carousel bind:this={carousel} perPage="{1}" dots="{false}" draggable="{false}">
+            <div style="background-image: url('./img/cat.svg'); background-size: contain; background-repeat: no-repeat; background-position: center;"></div>
+            <div style="background-image: url('./img/baby.svg'); background-size: contain; background-repeat: no-repeat; background-position: center;"></div>
+            <div style="background-image: url('./img/man.svg'); background-size: contain; background-repeat: no-repeat; background-position: center;"></div>
+            <div style="background-image: url('./img/woman.svg'); background-size: contain; background-repeat: no-repeat; background-position: center;"></div>
+        </Carousel>
 
         {#if playable}
             {#if !isPlaying}
-                <i class="fa fa-play" on:click="{_ => playButtonClicked()}"></i>
+                <i style="position:absolute;" class="fa fa-play" on:click="{_ => playButtonClicked()}"></i>
             {:else}
-                <i class="fa fa-pause" on:click="{_ => playButtonClicked()}"></i>
+                <i style="position:absolute;" class="fa fa-pause" on:click="{_ => playButtonClicked()}"></i>
             {/if}
         {/if}
 
@@ -75,6 +104,11 @@
     .banner-img {
         background-position: center;
         background-size: cover;
+    }
+
+    .carousel {
+        height: 100%;
+        background: white;
     }
 
 </style>

@@ -67,7 +67,7 @@
 
 <main class="container">
 
-    <Banner img="{'./img/' + mode + '.svg'}" playable="{playable}" blob1="{blob}"/>
+    <Banner img="{'./img/' + mode + '.svg'}" mode="{mode}" playable="{playable}" blob1="{blob}"/>
     <div class="app-body-comp-wrapper">
         <AppBody recording="{RECORDING_STATE}" audioToggleHandler="{audioToggleHandler}"/>
     </div>

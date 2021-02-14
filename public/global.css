@@ -61,3 +61,11 @@ button:not(:disabled):active {
 button:focus {
 	border-color: #666;
 }
+
+.carousel, .slides{
+	height: 100%;
+}
+
+.slides div {
+	height: 100%;
+}
