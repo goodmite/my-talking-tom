@@ -2,6 +2,7 @@
     import {onMount} from "svelte";
 
     export let blob1 = "";
+    export let playable = false;
     let audio;
     export let img;
     let isPlaying = false;
@@ -11,7 +12,7 @@
     }
 
     const playButtonClicked = () => {
-        debugger;
+
         if (!isPlaying) {
             audio.play();
         } else {
@@ -39,10 +40,12 @@
             style="background-image: url({img}); height: 100%;
     width: 100%; display: flex; justify-content: center; align-items: center">
 
-        {#if !isPlaying}
-            <i class="fa fa-play" on:click="{_ => playButtonClicked()}"></i>
-        {:else}
-            <i class="fa fa-pause" on:click="{_ => playButtonClicked()}"></i>
+        {#if playable}
+            {#if !isPlaying}
+                <i class="fa fa-play" on:click="{_ => playButtonClicked()}"></i>
+            {:else}
+                <i class="fa fa-pause" on:click="{_ => playButtonClicked()}"></i>
+            {/if}
         {/if}
 
         <div style="display: none">

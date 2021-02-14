@@ -1,14 +1,19 @@
 <script>
 
+    import {ERECORDING_STATE} from "./typing/recording-state";
+
     export let recording;
     export let audioToggleHandler;
 
 </script>
 
 <div class="comp">
-    <div class="recorder-container {recording && 'c'}" on:click={_ =>  {!recording && audioToggleHandler()}}>
-        {#if recording}
-            <i class="fa fa-circle {recording && 's'}"></i>
+    <div class="recorder-container {recording === ERECORDING_STATE.RECORDING && 'c'}"
+         on:click={_ =>  {recording === ERECORDING_STATE.DEFAULT && audioToggleHandler()}}>
+        {#if recording === ERECORDING_STATE.RECORDING}
+            <i class="fa fa-circle {recording === ERECORDING_STATE.RECORDING && 's'}"></i>
+        {:else if recording === ERECORDING_STATE.API}
+            <img style="width: 100%" src="./img/cogwheel.svg" alt=""/>
         {:else}
             <i class="fa fa-microphone"></i>
         {/if}
@@ -44,10 +49,11 @@
     }
 
     @media only screen and (max-width: 600px) {
-        .recorder-container{
+        .recorder-container {
             width: 150px;
             height: 150px;
         }
+
         .fa {
             font-size: 60px;
         }

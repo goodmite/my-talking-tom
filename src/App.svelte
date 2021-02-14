@@ -3,22 +3,25 @@
     import AppBody from "./AppBody.svelte";
     import Modes from "./Modes.svelte";
     import {createAudioContext, initAudio, saveAudio, toggleRecording} from "./audio";
+    import {ERECORDING_STATE} from "./typing/recording-state";
+
 
     export let name;
     let mode = "baby";
     let blob = "";
-    let recording = false;
+    let playable = false;
+    let RECORDING_STATE = ERECORDING_STATE.DEFAULT;
     const audioToggleHandler = () => {
-        recording = true;
+        RECORDING_STATE = ERECORDING_STATE.RECORDING;
         createAudioContext();
         initAudio();
         setTimeout(() => {
-            toggleRecording(recording);
+            toggleRecording(false);
             setTimeout(() => {
                 saveAudio(_ => alert())
                     .then((blob) => {
                         var fd = new FormData();
-                        debugger;
+                        RECORDING_STATE = ERECORDING_STATE.API;
                         fd.append('file', blob, 'filename.wav');
                         fd.append('mode', mode);
                         window.jQuery.ajax({
@@ -32,8 +35,9 @@
                         }).done(function (data) {
                             const resp = data["data"]
                             blob = "data:audio/wav;base64, " + resp//URL.createObjectURL(data);
+                            playable = true;
                             document.getElementById('audio').src = blob;
-                            recording = false;
+                            RECORDING_STATE = ERECORDING_STATE.DEFAULT;
                             //
                             // recordedAudio.controls = true;
                             //
@@ -42,7 +46,7 @@
                             // audioDownload.innerHTML = 'Download';
 
                         }).fail(() => {
-                            recording = false;
+                            RECORDING_STATE = ERECORDING_STATE.ERROR;
                         })
                     })
             }, 3000);
@@ -58,9 +62,9 @@
 
 <main class="container">
 
-    <Banner img="{'./img/' + mode + '.svg'}" blob1="{blob}"/>
+    <Banner img="{'./img/' + mode + '.svg'}" playable="{playable}" blob1="{blob}"/>
     <div class="app-body-comp-wrapper">
-        <AppBody recording="{recording}" audioToggleHandler="{audioToggleHandler}"/>
+        <AppBody recording="{RECORDING_STATE}" audioToggleHandler="{audioToggleHandler}"/>
     </div>
 <!--    <div class="mode-comp-wrapper">-->
         <Modes changeModeFn="{changeMode}" mode="{mode}"/>

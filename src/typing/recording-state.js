@@ -1,0 +1,11 @@
+const ERECORDING_STATE = {
+    DEFAULT: 'DEFAULT',
+    RECORDING: 'RECORDING',
+    API: 'API',
+    DONE: 'DONE',
+    ERROR: 'ERROR',
+}
+
+export {
+    ERECORDING_STATE
+}

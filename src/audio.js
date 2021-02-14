@@ -67,6 +67,8 @@ function doneEncoding(blob) {
 }
 
 export function toggleRecording(recording) {
+    console.log("sadasdasdasd")
+
     if (recording) {
         // stop recording
         audioRecorder.stop();
