@@ -40,7 +40,9 @@
                                 const resp = data["data"]
                                 blob = "data:audio/wav;base64, " + resp//URL.createObjectURL(data);
                                 playable = true;
-                                document.getElementById('audio').src = blob;
+                                const audio = document.getElementById('audio');
+                                audio.src = blob;
+                                audio.play();
                                 RECORDING_STATE = ERECORDING_STATE.DEFAULT;
                                 //
                                 // recordedAudio.controls = true;
