@@ -52,7 +52,7 @@
                                 // audioDownload.innerHTML = 'Download';
 
                             }).fail(() => {
-                                RECORDING_STATE = ERECORDING_STATE.ERROR;
+                                RECORDING_STATE = ERECORDING_STATE.DEFAULT;
                             })
                         })
                 });
