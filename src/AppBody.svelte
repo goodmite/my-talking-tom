@@ -4,12 +4,19 @@
 
     export let recording;
     export let audioToggleHandler;
+    const clickHandler = () => {
+        if (recording === ERECORDING_STATE.RECORDING) {
+            audioToggleHandler('stop');
+        } else if (recording === ERECORDING_STATE.DEFAULT) {
+            audioToggleHandler('start');
+        }
+    }
 
 </script>
 
 <div class="comp">
     <div class="recorder-container {recording === ERECORDING_STATE.RECORDING && 'c'}"
-         on:click={_ =>  {recording === ERECORDING_STATE.DEFAULT && audioToggleHandler()}}>
+         on:click={_ => clickHandler()}>
         {#if recording === ERECORDING_STATE.RECORDING}
             <i class="fa fa-circle {recording === ERECORDING_STATE.RECORDING && 's'}"></i>
         {:else if recording === ERECORDING_STATE.API}
@@ -94,7 +101,6 @@
         width: 90px;
         height: 90px;
         border-radius: 50%;
-        cursor: not-allowed !important;
         float: left;
     }
 

@@ -11,46 +11,51 @@
     let blob = "";
     let playable = false;
     let RECORDING_STATE = ERECORDING_STATE.DEFAULT;
-    const audioToggleHandler = () => {
-        RECORDING_STATE = ERECORDING_STATE.RECORDING;
-        createAudioContext();
-        initAudio();
-        setTimeout(() => {
-            toggleRecording(false);
+    const audioToggleHandler = (arg = "start") => {
+        if (arg === "start") {
+            RECORDING_STATE = ERECORDING_STATE.RECORDING;
+            createAudioContext();
+            initAudio();
+            setTimeout(()=>{
+                toggleRecording(false);
+            }, 500)
+        } else {
             setTimeout(() => {
-                saveAudio(_ => alert())
-                    .then((blob) => {
-                        var fd = new FormData();
-                        RECORDING_STATE = ERECORDING_STATE.API;
-                        fd.append('file', blob, 'filename.wav');
-                        fd.append('mode', mode);
-                        window.jQuery.ajax({
-                            type: 'POST',
-                            url: 'https://sheltered-plateau-08459.herokuapp.com/get_audio',
-                            data: fd,
-                            cache: false,
-                            processData: false,
-                            contentType: false,
-                            enctype: 'multipart/form-data'
-                        }).done(function (data) {
-                            const resp = data["data"]
-                            blob = "data:audio/wav;base64, " + resp//URL.createObjectURL(data);
-                            playable = true;
-                            document.getElementById('audio').src = blob;
-                            RECORDING_STATE = ERECORDING_STATE.DEFAULT;
-                            //
-                            // recordedAudio.controls = true;
-                            //
-                            // audioDownload.href = recordedAudio.src;
-                            // audioDownload.download = 'filename.wav';
-                            // audioDownload.innerHTML = 'Download';
+                setTimeout(() => {
+                    saveAudio(_ => alert())
+                        .then((blob) => {
+                            var fd = new FormData();
+                            RECORDING_STATE = ERECORDING_STATE.API;
+                            fd.append('file', blob, 'filename.wav');
+                            fd.append('mode', mode);
+                            window.jQuery.ajax({
+                                type: 'POST',
+                                url: 'https://sheltered-plateau-08459.herokuapp.com/get_audio',
+                                data: fd,
+                                cache: false,
+                                processData: false,
+                                contentType: false,
+                                enctype: 'multipart/form-data'
+                            }).done(function (data) {
+                                const resp = data["data"]
+                                blob = "data:audio/wav;base64, " + resp//URL.createObjectURL(data);
+                                playable = true;
+                                document.getElementById('audio').src = blob;
+                                RECORDING_STATE = ERECORDING_STATE.DEFAULT;
+                                //
+                                // recordedAudio.controls = true;
+                                //
+                                // audioDownload.href = recordedAudio.src;
+                                // audioDownload.download = 'filename.wav';
+                                // audioDownload.innerHTML = 'Download';
 
-                        }).fail(() => {
-                            RECORDING_STATE = ERECORDING_STATE.ERROR;
+                            }).fail(() => {
+                                RECORDING_STATE = ERECORDING_STATE.ERROR;
+                            })
                         })
-                    })
-            }, 3000);
-        }, 2000)
+                });
+            })
+        }
     }
 
 
@@ -66,9 +71,9 @@
     <div class="app-body-comp-wrapper">
         <AppBody recording="{RECORDING_STATE}" audioToggleHandler="{audioToggleHandler}"/>
     </div>
-<!--    <div class="mode-comp-wrapper">-->
-        <Modes changeModeFn="{changeMode}" mode="{mode}"/>
-<!--    </div>-->
+    <!--    <div class="mode-comp-wrapper">-->
+    <Modes changeModeFn="{changeMode}" mode="{mode}"/>
+    <!--    </div>-->
 
 </main>
 
@@ -95,13 +100,14 @@
         }
     }
 
-    .app-body-comp-wrapper{
+    .app-body-comp-wrapper {
         flex-grow: 1;
         display: flex;
         justify-content: center;
         align-items: center;
     }
-    .mode-comp-wrapper{
+
+    .mode-comp-wrapper {
         flex-grow: 1;
     }
 
