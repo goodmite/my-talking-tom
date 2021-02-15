@@ -37,7 +37,7 @@
                             fd.append('mode', tempMode);
                             window.jQuery.ajax({
                                 type: 'POST',
-                                url: 'https://sheltered-plateau-08459.herokuapp.com/get_audio',
+                                url: 'https://ancient-meadow-88825.herokuapp.com/get_audio',
                                 data: fd,
                                 cache: false,
                                 processData: false,
