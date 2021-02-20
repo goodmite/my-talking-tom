@@ -13,6 +13,7 @@
    limitations under the License.
 */
 
+/*source: https://codepen.io/asdqwe1t/pen/vYEErLG?editors=0010*/
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
 var audioContext;

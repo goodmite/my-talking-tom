@@ -4,6 +4,7 @@
     import Modes from "./Modes.svelte";
     import {createAudioContext, initAudio, saveAudio, toggleRecording} from "./audio";
     import {ERECORDING_STATE} from "./typing/recording-state";
+    import {audio2} from "./audio2";
 
 
     export let name;
@@ -11,12 +12,29 @@
     let blob = "";
     let playable = false;
     let RECORDING_STATE = ERECORDING_STATE.DEFAULT;
+    let audio2Obj;
     const audioToggleHandler = (arg = "start") => {
+        if (!audio2Obj) {
+            audio2Obj = audio2({
+                messageContainer: document.querySelector('.js-message'),
+                canvas: document.querySelector('.js-canvas'),
+                recordButton: document.querySelector('.js-record'),
+                playButton: document.querySelector('.js-play'),
+                audioPlayer: document.querySelector('.js-audio'),
+                playButtonIcon: document.querySelector('.js-play .fa'),
+            }, (recorder) => {
+                audio2Obj.toggleRecording();
+            })
+        } else {
+            audio2Obj.toggleRecording();
+        }
+
+        return;
         if (arg === "start") {
             RECORDING_STATE = ERECORDING_STATE.RECORDING;
             createAudioContext();
             initAudio();
-            setTimeout(()=>{
+            setTimeout(() => {
                 toggleRecording(false);
             }, 500)
         } else {
@@ -27,10 +45,10 @@
                             var fd = new FormData();
                             RECORDING_STATE = ERECORDING_STATE.API;
                             let tempMode = mode;
-                            if(mode === "man"){
+                            if (mode === "man") {
                                 tempMode = "male";
                             }
-                            if(mode === "woman"){
+                            if (mode === "woman") {
                                 tempMode = "female";
                             }
                             fd.append('file', blob, 'filename.wav');
@@ -75,9 +93,19 @@
 </script>
 
 <main class="container">
-
     <Banner img="{'./img/' + mode + '.svg'}" mode="{mode}" playable="{playable}" blob1="{blob}"/>
-    <div class="app-body-comp-wrapper">
+    <div class="app-body-comp-wrapper" style="display: flex; flex-direction: column; position: relative">
+        <div class="recorder" style="position: absolute; top: 0">
+            <div class="waveform">
+                <canvas height="50" class="js-canvas waveform__canvas"></canvas>
+            </div>
+            <div class="toolbar" style="display: none">
+                <button class="js-record button button--record"><i class="fa fa-microphone" aria-hidden="true"></i></button>
+                <button class="js-play button button--play button--disabled"><i class="fa fa-play" aria-hidden="true"></i>
+                </button>
+                <audio class="js-audio audio audio--hidden" controls/>
+            </div>
+        </div>
         <AppBody recording="{RECORDING_STATE}" audioToggleHandler="{audioToggleHandler}"/>
     </div>
     <!--    <div class="mode-comp-wrapper">-->
