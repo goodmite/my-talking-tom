@@ -4,18 +4,20 @@
 
     export let blob1 = "";
     export let playable = false;
+    export let button;
     let carousel;
     let audio;
     export let img;
     export let mode;
     let isPlaying = false;
+    export let playButtonClickedCb;
 
     function log(x) {
         console.log(x);
     }
 
     const playButtonClicked = () => {
-
+        playButtonClickedCb(isPlaying);
         if (!isPlaying) {
             audio.play();
         } else {
@@ -57,7 +59,7 @@
     }
 </script>
 
-<div style="background: #0000ffa3; height: 40%; position:relative;" class="banner-comp" >
+<div style="background: #0000ffa3; height: 40%; position:relative;" class="banner-comp">
     <div
             class="banner-img"
             style=" height: 100%;
@@ -76,6 +78,8 @@
                 <i style="position:absolute;" class="fa fa-pause" on:click="{_ => playButtonClicked()}"></i>
             {/if}
         {/if}
+
+
 
         <div style="display: none">
             <audio bind:this={audio} controls src="{blob1 || 'https://www.w3schools.com/html/horse.ogg'}"

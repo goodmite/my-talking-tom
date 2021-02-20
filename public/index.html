@@ -22,42 +22,18 @@
 
 <body>
 <button onclick="start()">start</button>
-<div id="waveform"></div>
+<div id="waveform1"></div>
 <script>
 
     function start() {
-        const wavesurfer = WaveSurfer.create({
-            container: document.querySelector('#waveform'),
-            waveColor: '#D9DCFF',
-            progressColor: '#4353FF',
-            cursorColor: '#4353FF',
-            barWidth: 3,
-            barRadius: 3,
-            cursorWidth: 1,
-            height: 200,
-            barGap: 3,
-            plugins: [
-                WaveSurfer.microphone.create()
-            ]
+        var wavesurfer = WaveSurfer.create({
+            container: '#waveform1',
+            waveColor: 'violet',
+            progressColor: 'purple'
         });
-        let stream1;
-        wavesurfer.microphone.on('deviceReady', function (stream) {
-            console.log('Device ready!', stream);
-			stream1 = stream;
-        });
-        wavesurfer.microphone.on('deviceError', function (code) {
-            console.warn('Device error: ' + code);
-        });
-        wavesurfer.microphone.start();
-        //	https://wavesurfer-js.org/example/microphone/index.html
-        setTimeout(() => {
-        	debugger;
-            wavesurfer.microphone.stopDevice();
-			wavesurfer.backend.getAudioContext();
-        }, 1000)
+        wavesurfer.load('https://wavesurfer-js.org/example/media/demo.wav');
     }
 
-    // wavesurfer.load('https://wavesurfer-js.org/example/media/demo.wav');
 </script>
 </body>
 </html>

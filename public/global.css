@@ -69,3 +69,7 @@ button:focus {
 .slides div {
 	height: 100%;
 }
+
+wave::-webkit-scrollbar {
+	width: 0px;
+}
