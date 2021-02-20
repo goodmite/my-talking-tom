@@ -5,6 +5,7 @@
     import {createAudioContext, initAudio, saveAudio, toggleRecording} from "./audio";
     import {ERECORDING_STATE} from "./typing/recording-state";
     import {audio2} from "./audio2";
+    import WaveForms from "./WaveForms.svelte";
 
 
     export let name;
@@ -22,67 +23,61 @@
                 playButton: document.querySelector('.js-play'),
                 audioPlayer: document.querySelector('.js-audio'),
                 playButtonIcon: document.querySelector('.js-play .fa'),
+                stopRecordingCb: (blob) => {
+                    sendRecToServer(blob);
+                }
             }, (recorder) => {
                 audio2Obj.toggleRecording();
             })
         } else {
             audio2Obj.toggleRecording();
         }
+    }
 
-        return;
-        if (arg === "start") {
-            RECORDING_STATE = ERECORDING_STATE.RECORDING;
-            createAudioContext();
-            initAudio();
-            setTimeout(() => {
-                toggleRecording(false);
-            }, 500)
-        } else {
-            setTimeout(() => {
-                setTimeout(() => {
-                    saveAudio(_ => alert())
-                        .then((blob) => {
-                            var fd = new FormData();
-                            RECORDING_STATE = ERECORDING_STATE.API;
-                            let tempMode = mode;
-                            if (mode === "man") {
-                                tempMode = "male";
-                            }
-                            if (mode === "woman") {
-                                tempMode = "female";
-                            }
-                            fd.append('file', blob, 'filename.wav');
-                            fd.append('mode', tempMode);
-                            window.jQuery.ajax({
-                                type: 'POST',
-                                url: 'https://ancient-meadow-88825.herokuapp.com/get_audio',
-                                data: fd,
-                                cache: false,
-                                processData: false,
-                                contentType: false,
-                                enctype: 'multipart/form-data'
-                            }).done(function (data) {
-                                const resp = data["data"]
-                                blob = "data:audio/wav;base64, " + resp//URL.createObjectURL(data);
-                                playable = true;
-                                const audio = document.getElementById('audio');
-                                audio.src = blob;
-                                audio.play();
-                                RECORDING_STATE = ERECORDING_STATE.DEFAULT;
-                                //
-                                // recordedAudio.controls = true;
-                                //
-                                // audioDownload.href = recordedAudio.src;
-                                // audioDownload.download = 'filename.wav';
-                                // audioDownload.innerHTML = 'Download';
+    const initWavesurfer = () => {
 
-                            }).fail(() => {
-                                RECORDING_STATE = ERECORDING_STATE.DEFAULT;
-                            })
-                        })
-                });
-            })
+    }
+
+
+    const sendRecToServer = (blob) => {
+        initWavesurfer();
+        var fd = new FormData();
+        RECORDING_STATE = ERECORDING_STATE.API;
+        let tempMode = mode;
+        if (mode === "man") {
+            tempMode = "male";
         }
+        if (mode === "woman") {
+            tempMode = "female";
+        }
+        fd.append('file', blob, 'filename.wav');
+        fd.append('mode', tempMode);
+        window.jQuery.ajax({
+            type: 'POST',
+            url: 'http://localhost:5005/get_audio',
+            data: fd,
+            cache: false,
+            processData: false,
+            contentType: false,
+            enctype: 'multipart/form-data'
+        }).done(function (data) {
+            const resp = data["data"]
+            blob = "data:audio/wav;base64, " + resp//URL.createObjectURL(data);
+            playable = true;
+            const audio = document.getElementById('audio');
+            audio.src = blob;
+            audio.play();
+            RECORDING_STATE = ERECORDING_STATE.DEFAULT;
+            //
+            // recordedAudio.controls = true;
+            //
+            // audioDownload.href = recordedAudio.src;
+            // audioDownload.download = 'filename.wav';
+            // audioDownload.innerHTML = 'Download';
+
+        }).fail(() => {
+            RECORDING_STATE = ERECORDING_STATE.DEFAULT;
+        })
     }
 
 
@@ -100,12 +95,16 @@
                 <canvas height="50" class="js-canvas waveform__canvas"></canvas>
             </div>
             <div class="toolbar" style="display: none">
-                <button class="js-record button button--record"><i class="fa fa-microphone" aria-hidden="true"></i></button>
-                <button class="js-play button button--play button--disabled"><i class="fa fa-play" aria-hidden="true"></i>
+                <button class="js-record button button--record"><i class="fa fa-microphone" aria-hidden="true"></i>
                 </button>
+                <button class="js-play button button--play button--disabled"><i class="fa fa-play"
+                                                                                aria-hidden="true"></i>
+                </button>
+                <audio id="audio" src=""></audio>
                 <audio class="js-audio audio audio--hidden" controls/>
             </div>
         </div>
+        <WaveForms/>
         <AppBody recording="{RECORDING_STATE}" audioToggleHandler="{audioToggleHandler}"/>
     </div>
     <!--    <div class="mode-comp-wrapper">-->
