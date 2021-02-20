@@ -1,21 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset='utf-8'>
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<title>Talking Boye</title>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Talking Boye</title>
 
-	<link rel='icon' type='image/png' href='/favicon.png'>
-	<link rel='stylesheet' href='/global.css'>
-	<link rel='stylesheet' href='/build/bundle.css'>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="js/audiodisplay.js"></script>
-	<script src="js/recorder.js"></script>
-	<script src="js/main.js"></script>
-	<script defer src='/build/bundle.js'></script>
+    <link rel='icon' type='image/png' href='/favicon.png'>
+    <link rel='stylesheet' href='/global.css'>
+    <link rel='stylesheet' href='/build/bundle.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+          integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+          crossorigin="anonymous"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/audiodisplay.js"></script>
+    <script src="js/recorder.js"></script>
+    <script src="js/main.js"></script>
+    <script src="https://unpkg.com/wavesurfer.js@4.5.0/dist/wavesurfer.js"></script>
+    <script src="https://unpkg.com/wavesurfer.js@4.5.0/dist/plugin/wavesurfer.microphone.min.js"></script>
+    <script defer src='/build/bundle.js'></script>
 </head>
 
 <body>
+<button onclick="start()">start</button>
+<div id="waveform1"></div>
+<script>
+
+    function start() {
+        var wavesurfer = WaveSurfer.create({
+            container: '#waveform1',
+            waveColor: 'violet',
+            progressColor: 'purple'
+        });
+        wavesurfer.load('https://wavesurfer-js.org/example/media/demo.wav');
+    }
+
+</script>
 </body>
 </html>
