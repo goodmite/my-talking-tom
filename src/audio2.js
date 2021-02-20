@@ -4,6 +4,8 @@
  *               Tested in Chrome and Firefox.
  */
 
+let audioContext, audioRecorder;
+
 /* https://codepen.io/Sambego/pen/VmBJJN */
 const audio2 = function ({
                              messageContainer,
@@ -26,7 +28,7 @@ const audio2 = function ({
     playButtonIcon = document.querySelector('.js-play .fa');
 
     // Constants
-    const audioContext = new AudioContext();
+    audioContext = new AudioContext();
     const analyser = audioContext.createAnalyser();
     const scriptProcessor = audioContext.createScriptProcessor(2048, 1, 1);
     const chunks = [];
@@ -81,12 +83,13 @@ const audio2 = function ({
     // Set all variables which needed the audio stream
     const setAudioStream = stream => {
         stream = stream;
+        initRecorder(stream);
         input = audioContext.createMediaStreamSource(stream);
         recorder = new window.MediaRecorder(stream);
 
         setRecorderActions();
         setupWaveform();
-        readyCb(recorder);
+        readyCb(recorder, audioRecorder);
     };
 
     // Setup the recorder actions
@@ -252,6 +255,17 @@ const audio2 = function ({
     return {
         toggleRecording
     }
+}
+
+
+function initRecorder(stream) {
+    const inputPoint = audioContext.createGain();
+    const audioInput = audioContext.createMediaStreamSource(stream);
+    audioInput.connect(inputPoint);
+    const analyserNode = audioContext.createAnalyser();
+    analyserNode.fftSize = 2048;
+    inputPoint.connect(analyserNode);
+    audioRecorder = new Recorder(inputPoint);
 }
 
 export {

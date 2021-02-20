@@ -14,6 +14,7 @@
     let playable = false;
     let RECORDING_STATE = ERECORDING_STATE.DEFAULT;
     let audio2Obj;
+    let audioRecorder1;
     const audioToggleHandler = (arg = "start") => {
         if (!audio2Obj) {
             audio2Obj = audio2({
@@ -26,11 +27,16 @@
                 stopRecordingCb: (blob) => {
                     sendRecToServer(blob);
                 }
-            }, (recorder) => {
+            }, (recorder, audioRecorder) => {
                 audio2Obj.toggleRecording();
+                audioRecorder1 = audioRecorder
             })
         } else {
             audio2Obj.toggleRecording();
+            audioRecorder1.exportWAV(x => {
+                const audio = document.getElementById('audio2');
+                audio.src = x;
+            });
         }
     }
 
@@ -94,13 +100,13 @@
             <div class="waveform">
                 <canvas height="50" class="js-canvas waveform__canvas"></canvas>
             </div>
-            <div class="toolbar" style="display: none">
+            <div class="toolbar" style="">
                 <button class="js-record button button--record"><i class="fa fa-microphone" aria-hidden="true"></i>
                 </button>
                 <button class="js-play button button--play button--disabled"><i class="fa fa-play"
                                                                                 aria-hidden="true"></i>
                 </button>
-                <audio id="audio" src=""></audio>
+                <audio id="audio2" src=""></audio>
                 <audio class="js-audio audio audio--hidden" controls/>
             </div>
         </div>

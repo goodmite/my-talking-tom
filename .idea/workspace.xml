@@ -20,8 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="44f11041-5f7a-44ed-b3bb-9c61591cda98" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2_20_2021_1_30_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2_20_2021_1_30_PM__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/audio/horse.ogv" beforeDir="false" afterPath="$PROJECT_DIR$/public/audio/horse.ogg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/audio2.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/audio2.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,10 +97,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="93" y="93" width="1095" height="504" key="DiffContextDialog" timestamp="1613807997100">
+    <state x="93" y="93" width="1095" height="504" key="DiffContextDialog" timestamp="1613812646685">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="93" y="93" width="1095" height="504" key="DiffContextDialog/0.0.1280.689@0.0.1280.689" timestamp="1613807997100" />
+    <state x="93" y="93" width="1095" height="504" key="DiffContextDialog/0.0.1280.689@0.0.1280.689" timestamp="1613812646685" />
     <state x="351" y="200" key="FileDocumentManager.FileCacheConflict" timestamp="1613201478728">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
