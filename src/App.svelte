@@ -16,7 +16,7 @@
     let playable = false;
     let RECORDING_STATE = ERECORDING_STATE.DEFAULT;
     let audio2Obj;
-    window._local = true;
+    window._local = false;
     let seekTo = 0;
     let view = "default";
     var seconds = 0;
