@@ -23,7 +23,7 @@
         {#if recording === ERECORDING_STATE.RECORDING}
             <i class="fa fa-circle {recording === ERECORDING_STATE.RECORDING && 's'}"></i>
         {:else if recording === ERECORDING_STATE.API}
-            <img style="width: 100%" src="./img/cogwheel.svg" alt=""/>
+            <img style="width: 100%; background: wheat" src="./img/cogwheel.svg" alt=""/>
         {:else}
             <i class="fa fa-microphone"></i>
         {/if}

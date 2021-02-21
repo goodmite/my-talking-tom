@@ -1,33 +1,22 @@
-<svg id="Capa_1" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512"
-     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="74.981" x2="437.019" y1="74.981" y2="437.019">
-        <stop offset="0" stop-color="wheat"/>
-        <stop offset="1" stop-color="wheat"/>
-    </linearGradient>
-    <linearGradient id="lg1" opacity="0.3">
-        <stop offset="0" stop-color="#0000ffa3"/>
-        <stop offset="1" stop-color="#0000ffa3"/>
-    </linearGradient>
-    <linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="60.643" x2="451.357" xlink:href="#lg1" y1="255.357"
-                    y2="255.357"/>
-    <linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="187.32" x2="324.68" xlink:href="#lg1" y1="255.357"
-                    y2="255.357"/>
-    <g>
-        <circle cx="256" cy="256" fill="wheat" r="256"/>
-        <g>
-            <path d="m295.343 280.84h45.787v73.507h-45.787z" fill="#83878c"
-                  transform="matrix(.707 -.707 .707 .707 -131.363 318.047)"/>
-            <path d="m281.483 170.227h73.507v45.787h-73.507z" fill="#83878c"
-                  transform="matrix(.707 -.707 .707 .707 -43.347 281.591)"/>
-            <path d="m157.01 294.7h73.507v45.787h-73.507z" fill="#a4a6aa"
-                  transform="matrix(.707 -.707 .707 .707 -167.82 230.033)"/>
-            <path d="m170.87 156.367h45.787v73.507h-45.787z" fill="#a4a6aa"
-                  transform="matrix(.707 -.707 .707 .707 -79.805 193.575)"/>
-            <path d="m449.286 226.897-27.168-8.84c-4.333-19.381-11.967-37.514-22.286-53.778l12.966-25.473c-5.611-7.529-11.824-14.752-18.66-21.588s-14.059-13.049-21.588-18.66l-25.471 12.965c-16.265-10.322-34.399-17.957-53.782-22.29l-8.837-27.163c-9.292-1.356-18.792-2.07-28.46-2.07s-19.168.714-28.46 2.07l-8.838 27.164c-19.383 4.333-37.517 11.968-53.782 22.29l-25.47-12.965c-7.529 5.611-14.752 11.824-21.588 18.66s-13.049 14.059-18.66 21.588l12.966 25.473c-10.32 16.264-17.954 34.397-22.286 53.778l-27.168 8.84c-1.356 9.292-2.07 18.792-2.07 28.46s.714 19.168 2.07 28.46l27.168 8.84c4.333 19.381 11.967 37.514 22.286 53.778l-12.966 25.473c5.611 7.529 11.824 14.752 18.66 21.588s14.059 13.049 21.588 18.66l25.471-12.965c16.265 10.322 34.399 17.957 53.782 22.29l8.838 27.164c9.292 1.356 18.792 2.07 28.46 2.07s19.168-.714 28.46-2.07l8.838-27.164c19.383-4.333 37.517-11.968 53.782-22.29l25.471 12.965c7.529-5.611 14.751-11.824 21.588-18.66 6.836-6.836 13.049-14.059 18.66-21.588l-12.966-25.473c10.32-16.264 17.954-34.397 22.286-53.778l27.168-8.84c1.356-9.292 2.07-18.792 2.07-28.46s-.715-19.169-2.072-28.461zm-193.286 142.926c-63.218 0-114.467-51.248-114.467-114.467s51.249-114.466 114.467-114.466 114.467 51.248 114.467 114.467-51.249 114.466-114.467 114.466z"
-                  fill="url(#SVGID_2_)"/>
-            <path d="m256 186.677c-37.931 0-68.68 30.749-68.68 68.68s30.749 68.68 68.68 68.68 68.68-30.749 68.68-68.68-30.749-68.68-68.68-68.68zm0 91.573c-12.644 0-22.893-10.25-22.893-22.893 0-12.644 10.25-22.893 22.893-22.893 12.644 0 22.893 10.25 22.893 22.893s-10.249 22.893-22.893 22.893z"
-                  fill="url(#SVGID_3_)"/>
-        </g>
-    </g>
-    <animateTransform attributeType="xml" attributeName="transform" type="rotate" values="0 0 0; 360 0 0" dur="5s" additive="sum" repeatCount="indefinite" />
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     style="margin:auto;display:block;"
+     width="200px" height="200px" viewBox="0 0 100 100"
+     preserveAspectRatio="xMidYMid">
+    <circle cx="18" cy="50" r="4" fill="#e15b64">
+        <animate attributeName="cy" values="34;66;34" times="0;0.5;1" dur="1s" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" begin="0s" repeatCount="indefinite"></animate>
+    </circle><circle cx="27" cy="61.31370849898476" r="4" fill="#f47e60">
+    <animate attributeName="cy" values="34;66;34" times="0;0.5;1" dur="1s" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" begin="-0.125s" repeatCount="indefinite"></animate>
+</circle><circle cx="36" cy="66" r="4" fill="#f8b26a">
+    <animate attributeName="cy" values="34;66;34" times="0;0.5;1" dur="1s" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" begin="-0.25s" repeatCount="indefinite"></animate>
+</circle><circle cx="45" cy="61.31370849898476" r="4" fill="#abbd81">
+    <animate attributeName="cy" values="34;66;34" times="0;0.5;1" dur="1s" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" begin="-0.375s" repeatCount="indefinite"></animate>
+</circle><circle cx="54" cy="50" r="4" fill="#e15b64">
+    <animate attributeName="cy" values="34;66;34" times="0;0.5;1" dur="1s" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" begin="-0.5s" repeatCount="indefinite"></animate>
+</circle><circle cx="63" cy="38.68629150101524" r="4" fill="#f47e60">
+    <animate attributeName="cy" values="34;66;34" times="0;0.5;1" dur="1s" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" begin="-0.625s" repeatCount="indefinite"></animate>
+</circle><circle cx="72" cy="34" r="4" fill="#f8b26a">
+    <animate attributeName="cy" values="34;66;34" times="0;0.5;1" dur="1s" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" begin="-0.75s" repeatCount="indefinite"></animate>
+</circle><circle cx="81" cy="38.68629150101523" r="4" fill="#abbd81">
+    <animate attributeName="cy" values="34;66;34" times="0;0.5;1" dur="1s" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" begin="-0.875s" repeatCount="indefinite"></animate>
+</circle>
 </svg>
