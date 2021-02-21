@@ -9,16 +9,22 @@
 
 
     export let name;
-    let mode = "baby";
+    let mode = "cat";
     let waveForms1, waveForms2;
     let button;
     let blob = "", blobInitial = "", blobFinal = "";
     let playable = false;
     let RECORDING_STATE = ERECORDING_STATE.DEFAULT;
     let audio2Obj;
-    window._local = false;
+    window._local = true;
     let seekTo = 0;
     let view = "default";
+    var seconds = 0;
+    var el = document.getElementById('seconds-counter');
+    let intervalRef;
+    function incrementSeconds() {
+        seconds += 1;
+    }
     const seekToChangedCb = (arg) => {
         seekTo = arg;
         setTimeout(() => {
@@ -29,6 +35,7 @@
     }
     const audioToggleHandler1 = () => {
         if (!audio2Obj) {
+            intervalRef = setInterval(incrementSeconds, 1000);
             audio2Obj = audio2({
                 messageContainer: document.querySelector('.js-message'),
                 canvas: document.querySelector('.js-canvas'),
@@ -45,6 +52,8 @@
         } else {
             audio2Obj.toggleRecording();
             audio2Obj = null;
+            clearInterval(intervalRef);
+            seconds = 0;
         }
     }
 
@@ -135,6 +144,8 @@
         view = arg;
         if (view === 'default') {
             playable = false
+            const audio = document.getElementById('audio');
+            audio.pause();
         }
     }
 </script>
@@ -142,6 +153,7 @@
 <main class="container">
     <button style="display: none" bind:this={button}>hello</button>
     <Banner playButtonClickedCb="{playButtonClickedCb}"
+            seconds="{seconds}"
             button="{button}" img="{'./img/' + mode + '.svg'}" mode="{mode}"
             playable="{playable}" blob1="{blob}">
     </Banner>
@@ -150,7 +162,8 @@
         {#if view === 'waveform'}
             <div style="width: 100%">
                 <div style="display: flex;justify-content: flex-end;">
-                    <i on:click="{_ => { viewChangeHandler('default')}}" style="padding: 8px; color: blue"
+                    <i on:click="{_ => { viewChangeHandler('default')}}"
+                       style="padding: 8px; color: blue; cursor: pointer"
                        class="fa fa-arrow-right"></i>
                 </div>
                 <div style="width: 100%; height: 100px; display: flex; flex-direction: column; justify-content: center">

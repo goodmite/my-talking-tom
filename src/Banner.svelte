@@ -4,7 +4,7 @@
 
     export let blob1 = "";
     export let playable = false;
-    export let button;
+    export let button, seconds;
     let carousel;
     let audio;
     export let img;
@@ -64,6 +64,15 @@
             class="banner-img"
             style=" height: 100%;
     width: 100%; display: flex; justify-content: center; align-items: center">
+        {#if seconds}
+            <div style="position: absolute;
+    top: 50%;
+    z-index: 10000;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    filter: drop-shadow(0 1px 2px grey);
+    font-size: 70px;">{seconds}</div>
+        {/if}
         <Carousel bind:this={carousel} perPage="{1}" dots="{false}" draggable="{false}">
             <div style="background-image: url('./img/cat.svg'); background-size: contain; background-repeat: no-repeat; background-position: center;"></div>
             <div style="background-image: url('./img/baby.svg'); background-size: contain; background-repeat: no-repeat; background-position: center;"></div>
@@ -96,6 +105,7 @@
         justify-content: center;
         align-items: center;
         color: white;
+        transition: 1s;
     }
 
     .fa {

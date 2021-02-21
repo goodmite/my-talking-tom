@@ -16,7 +16,8 @@
 
 <div class="comp">
     <div class="recorder-container {recording === ERECORDING_STATE.RECORDING && 'c'}"
-         on:click={_ => clickHandler()}>
+         title="tap and hold"
+         on:mousedown={_ => clickHandler()} on:mouseup={_ => clickHandler()}>
         {#if recording === ERECORDING_STATE.RECORDING}
             <i class="fa fa-circle {recording === ERECORDING_STATE.RECORDING && 's'}"></i>
         {:else if recording === ERECORDING_STATE.API}

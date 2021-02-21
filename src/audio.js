@@ -151,7 +151,7 @@ function toggleMono() {
 }
 
 function gotStream(stream) {
-    debugger;
+
     inputPoint = audioContext.createGain();
 
     // Create an AudioNode from the stream.
@@ -181,7 +181,6 @@ export function initAudio() {
         navigator.cancelAnimationFrame = navigator.webkitCancelAnimationFrame || navigator.mozCancelAnimationFrame;
     if (!navigator.requestAnimationFrame)
         navigator.requestAnimationFrame = navigator.webkitRequestAnimationFrame || navigator.mozRequestAnimationFrame;
-    debugger;
     navigator.getUserMedia(
         {
             "audio": {
