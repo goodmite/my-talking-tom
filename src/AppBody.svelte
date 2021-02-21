@@ -5,6 +5,7 @@
     export let recording;
     export let audioToggleHandler;
     const clickHandler = () => {
+        console.log("================================");
         if (recording === ERECORDING_STATE.RECORDING) {
             audioToggleHandler('stop');
         } else if (recording === ERECORDING_STATE.DEFAULT) {
@@ -15,9 +16,10 @@
 </script>
 
 <div class="comp">
-    <div class="recorder-container {recording === ERECORDING_STATE.RECORDING && 'c'}"
-         title="tap and hold"
-         on:mousedown={_ => clickHandler()} on:mouseup={_ => clickHandler()}>
+    <div class="recorder-container {recording === ERECORDING_STATE.RECORDING && 'c pointer-events-none'}"
+         title="Tap and hold"
+         on:click={_ => clickHandler()}
+         >
         {#if recording === ERECORDING_STATE.RECORDING}
             <i class="fa fa-circle {recording === ERECORDING_STATE.RECORDING && 's'}"></i>
         {:else if recording === ERECORDING_STATE.API}
@@ -30,6 +32,11 @@
 </div>
 
 <style>
+    .pointer-events-none {
+        /*pointer-events: none;*/
+        /*background: red;*/
+    }
+
     .comp {
         display: flex;
         justify-content: center;
