@@ -173,7 +173,7 @@
                 </div>
                 <div style="width: 100%; height: 100px; display: flex; flex-direction: column; justify-content: center">
                     <WaveForms bind:seekTo={seekTo} seekToChangedCb="{seekToChangedCb}" bind:this={waveForms2}
-                               blob="{blobInitial}"
+                               blob="{blobFinal}"
                                button="{button}"/>
                 </div>
             </div>
