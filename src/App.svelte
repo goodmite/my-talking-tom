@@ -202,9 +202,11 @@
         {/if}
     </div>
     <!--    <div class="mode-comp-wrapper">-->
-    {#if view === "default"}
+
+    <div class="{view !== 'default' && 'pointer-events-none'}">
         <Modes changeModeFn="{changeMode}" mode="{mode}"/>
-    {/if}
+    </div>
+
     <!--    </div>-->
 
 </main>
@@ -245,6 +247,11 @@
 
     .d-none {
         visibility: hidden !important;
+    }
+
+    .pointer-events-none {
+        pointer-events: none;
+        opacity: 0.4;
     }
 
 </style>
