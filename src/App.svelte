@@ -22,9 +22,11 @@
     var seconds = 0;
     var el = document.getElementById('seconds-counter');
     let intervalRef;
+
     function incrementSeconds() {
         seconds += 1;
     }
+
     const seekToChangedCb = (arg) => {
         seekTo = arg;
         setTimeout(() => {
@@ -180,7 +182,7 @@
         {/if}
         <div class="recorder" style="position: absolute; top: 0">
             {#if view === "default"}
-                <div class="waveform">
+                <div class="waveform" style="z-index: -1">
                     <canvas height="50" class="js-canvas waveform__canvas"></canvas>
                 </div>
             {/if}
@@ -200,7 +202,9 @@
         {/if}
     </div>
     <!--    <div class="mode-comp-wrapper">-->
-    <Modes changeModeFn="{changeMode}" mode="{mode}"/>
+    {#if view === "default"}
+        <Modes changeModeFn="{changeMode}" mode="{mode}"/>
+    {/if}
     <!--    </div>-->
 
 </main>

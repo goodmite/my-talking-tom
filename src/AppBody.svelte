@@ -17,7 +17,6 @@
 
 <div class="comp">
     <div class="recorder-container {recording === ERECORDING_STATE.RECORDING && 'c pointer-events-none'}"
-         title="Tap and hold"
          on:click={_ => clickHandler()}
          >
         {#if recording === ERECORDING_STATE.RECORDING}
