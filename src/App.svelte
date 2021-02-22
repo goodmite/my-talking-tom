@@ -164,7 +164,7 @@
                 <div style="display: flex;justify-content: flex-end;">
                     <i on:click="{_ => { viewChangeHandler('default')}}"
                        style="padding: 8px; color: blue; cursor: pointer; opacity: 0.8"
-                       class="fa fa-arrow-times"></i>
+                       class="fa fa-times"></i>
                 </div>
                 <div style="width: 100%; height: 100px; display: flex; flex-direction: column; justify-content: center">
                     <WaveForms bind:seekTo={seekTo} seekToChangedCb="{seekToChangedCb}" bind:this={waveForms1}
