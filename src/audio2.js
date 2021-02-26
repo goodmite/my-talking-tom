@@ -14,7 +14,8 @@ const audio2 = function ({
                              playButton,
                              audioPlayer,
                              playButtonIcon,
-                             stopRecordingCb
+                             stopRecordingCb,
+                             dataReceived
                          }, readyCb) {
     if (!window.AudioContext) {
         setMessage('Your browser does not support window.Audiocontext. This is needed for this demo to work. Please try again in a differen browser.');
@@ -101,13 +102,15 @@ const audio2 = function ({
     // Save chunks of the incomming audio to the chuncks array
     const saveChunkToRecording = event => {
         chunks.push(event.data);
+        dataReceived(event.data);
     }
 
     // Save the recording
     const saveRecording = () => {
+
         const blob = new Blob(chunks, {'type': 'audio/wav'});
         recording = URL.createObjectURL(blob);
-        chunks: [];
+        // chunks: [];
         audioPlayer.setAttribute('src', recording);
         stopRecordingCb(blob);
         playButton.classList.remove('button--disabled');
@@ -117,7 +120,7 @@ const audio2 = function ({
     const startRecording = () => {
         isRecording = true;
         recordButton.classList.add('button--active');
-        recorder.start();
+        recorder.start(1000);
     }
     // recorder.start();
 

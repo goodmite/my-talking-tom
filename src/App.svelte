@@ -17,6 +17,19 @@
     let RECORDING_STATE = ERECORDING_STATE.DEFAULT;
     let audio2Obj;
     window._local = false;
+    let socket = window.io("http://localhost:3000/");
+    const chunks = [];
+    socket.on('chat message', function (msg) {
+        console.log(1);
+        chunks.push(msg);
+    });
+    socket.on('stopped', function () {
+        console.log(2);
+        const blob = new Blob(chunks, {'type': 'audio/wav'});
+        const recording = URL.createObjectURL(blob);
+        const audioPlayer = document.querySelector("#socketTest");
+        audioPlayer.setAttribute('src', recording);
+    });
     let seekTo = 0;
     let view = "default";
     var seconds = 0;
@@ -46,7 +59,10 @@
                 audioPlayer: document.querySelector('.js-audio'),
                 playButtonIcon: document.querySelector('.js-play .fa'),
                 stopRecordingCb: (blob) => {
-
+                    socket.emit('stopped', "bye");
+                },
+                dataReceived: (x) => {
+                    socket.emit('chat message', x);
                 }
             }, (recorder, audioRecorder) => {
                 audio2Obj.toggleRecording();
@@ -61,6 +77,7 @@
 
     const audioToggleHandler = (arg = "start") => {
         audioToggleHandler1();
+        return;
         if (arg === "start") {
             RECORDING_STATE = ERECORDING_STATE.RECORDING;
             createAudioContext();
