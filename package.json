@@ -2,10 +2,11 @@
   "name": "svelte-app",
   "version": "1.0.0",
   "scripts": {
-    "build": "rollup -c && npm run server",
+    "build": "rollup -c",
     "dev": "rollup -c -w",
     "server": "node index.js",
-    "start": "sirv public"
+    "start-fe": "sirv public",
+    "start": "npm run server"
   },
   "devDependencies": {
     "@beyonk/svelte-carousel": "^2.8.0",
