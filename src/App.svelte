@@ -18,7 +18,8 @@
     let audio2Obj;
     window._local = false;
 
-    let socket = window.io("https://talking-tom.herokuapp.com");
+    // let socket = window.io("https://talking-tom.herokuapp.com");
+    let socket = window.io("http://localhost:3000");
     const chunks = [];
     const setTimeoutList = []
 
@@ -46,6 +47,9 @@
         }, 0);
         setTimeoutList.push(ref);
     });
+    socket.on('connect_done', function () {
+        alert("YOU ARE CONNECTED")
+    })
     socket.on('stopped', function () {
         audioPlayer.pause();
     });

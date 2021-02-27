@@ -15,6 +15,7 @@ app.get('/health', (req, res) => {
 });
 
 io.on('connection', (socket) => {
+  io.to(socket.id).emit("connect_done");
   socket.on('chat message', msg => {
     io.emit('chat message', msg);
   });
