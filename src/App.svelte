@@ -18,7 +18,7 @@
     let audio2Obj;
     window._local = false;
     debugger;
-    let socket = window.io("https://talking-tom.herokuapp.com:3001");
+    let socket = window.io("https://talking-tom.herokuapp.com");
     const chunks = [];
     const setTimeoutList = []
 

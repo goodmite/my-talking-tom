@@ -6,7 +6,8 @@
     "dev": "rollup -c -w",
     "server": "node index.js",
     "start-fe": "sirv public",
-    "start": "npm run server"
+    "start": "npm run server",
+    "heroku-deploy": "git push heroku master"
   },
   "devDependencies": {
     "@beyonk/svelte-carousel": "^2.8.0",
