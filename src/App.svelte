@@ -17,7 +17,7 @@
     let RECORDING_STATE = ERECORDING_STATE.DEFAULT;
     let audio2Obj;
     window._local = false;
-    let socket = window.io("http://localhost:3000/");
+    let socket = window.io("https://talking-tom.netlify.app/");
     const chunks = [];
     const setTimeoutList = []
 
