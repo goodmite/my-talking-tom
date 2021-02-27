@@ -31,7 +31,7 @@ const audio2 = function ({
     // Constants
     audioContext = new AudioContext();
     const analyser = audioContext.createAnalyser();
-    const scriptProcessor = audioContext.createScriptProcessor(2048, 1, 1);
+    const scriptProcessor = audioContext.createScriptProcessor(256, 1, 1);
     const chunks = [];
 
     // Variables
