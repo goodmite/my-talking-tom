@@ -34,6 +34,7 @@
     }
 
     socket.on('chat message', function ({data, timestamp}) {
+        console.log((Date.now() - timestamp) / 1000 + " sec delay in this RECEIVING this packet");
         chunks.push(data);
         /*always play latest packet, ignore stale packets*/
         const ref = setTimeout(() => {
@@ -42,7 +43,6 @@
             })
             setTimeoutList.length = 0;
             x(chunks);
-            console.log((Date.now() - timestamp) / 1000 + " sec delay in this PLAYING this packet");
         }, 0);
         setTimeoutList.push(ref);
     });
