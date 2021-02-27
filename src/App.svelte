@@ -18,8 +18,8 @@
     let audio2Obj;
     window._local = false;
 
-    // let socket = window.io("https://talking-tom.herokuapp.com");
-    let socket = window.io("http://localhost:3000");
+    let socket = window.io("https://talking-tom.herokuapp.com");
+    // let socket = window.io("http://localhost:3000");
     const chunks = [];
     const setTimeoutList = []
 
