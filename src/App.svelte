@@ -17,7 +17,7 @@
     let RECORDING_STATE = ERECORDING_STATE.DEFAULT;
     let audio2Obj;
     window._local = false;
-    debugger;
+
     let socket = window.io("https://talking-tom.herokuapp.com");
     const chunks = [];
     const setTimeoutList = []
