@@ -6,7 +6,7 @@ const io = require('socket.io')(http, {
   }
 });
 var cors = require('cors')
-const port = process.env.PORT || 3001;
+const port = process.env.port || process.env.PORT || 3000;
 
 app.use(cors())
 

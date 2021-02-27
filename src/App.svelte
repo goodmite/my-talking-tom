@@ -17,7 +17,8 @@
     let RECORDING_STATE = ERECORDING_STATE.DEFAULT;
     let audio2Obj;
     window._local = false;
-    let socket = window.io("https://talking-tom.netlify.app/");
+    debugger;
+    let socket = window.io("https://talking-tom.herokuapp.com:3001");
     const chunks = [];
     const setTimeoutList = []
 
