@@ -19,16 +19,34 @@
     window._local = false;
     let socket = window.io("http://localhost:3000/");
     const chunks = [];
-    socket.on('chat message', function (msg) {
-        console.log(1);
-        chunks.push(msg);
+    const setTimeoutList = []
+
+    const audioPlayer = new Audio();
+
+    function x(arr) {
+        const currentTime = audioPlayer.currentTime;
+        const blob = new Blob(arr, {'type': 'audio/wav'});
+        const recording = URL.createObjectURL(blob);
+        audioPlayer.setAttribute('src', recording);
+        audioPlayer.currentTime = currentTime;
+        audioPlayer.play();
+    }
+
+    socket.on('chat message', function ({data, timestamp}) {
+        chunks.push(data);
+        /*always play latest packet, ignore stale packets*/
+        const ref = setTimeout(() => {
+            setTimeoutList.forEach((item) => {
+                clearTimeout(item);
+            })
+            setTimeoutList.length = 0;
+            x(chunks);
+            console.log((Date.now() - timestamp) / 1000 + " sec delay in this PLAYING this packet");
+        }, 0);
+        setTimeoutList.push(ref);
     });
     socket.on('stopped', function () {
-        console.log(2);
-        const blob = new Blob(chunks, {'type': 'audio/wav'});
-        const recording = URL.createObjectURL(blob);
-        const audioPlayer = document.querySelector("#socketTest");
-        audioPlayer.setAttribute('src', recording);
+        audioPlayer.pause();
     });
     let seekTo = 0;
     let view = "default";
@@ -61,8 +79,9 @@
                 stopRecordingCb: (blob) => {
                     socket.emit('stopped', "bye");
                 },
-                dataReceived: (x) => {
-                    socket.emit('chat message', x);
+                dataReceived: (data) => {
+                    const timestamp = Date.now();
+                    socket.emit('chat message', {data, timestamp});
                 }
             }, (recorder, audioRecorder) => {
                 audio2Obj.toggleRecording();
