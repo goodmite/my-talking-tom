@@ -185,10 +185,10 @@ export function initAudio() {
         {
             "audio": {
                 "mandatory": {
-                    "googEchoCancellation": "false",
+                    "googEchoCancellation": "true",
                     "googAutoGainControl": "false",
-                    "googNoiseSuppression": "false",
-                    "googHighpassFilter": "false"
+                    "googNoiseSuppression": "true",
+                    "googHighpassFilter": "true"
                 },
                 "optional": []
             },
