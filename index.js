@@ -22,7 +22,7 @@ io.on('connection', (socket) => {
     io.emit("connect_done", {clients});
     console.log(clients);
     socket.on('chat message', msg => {
-        io.emit('chat message', msg);
+        socket.broadcast.emit('chat message', msg);
     });
     socket.on('stopped', msg => {
         io.emit('stopped', {msg, id});

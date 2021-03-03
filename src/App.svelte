@@ -26,7 +26,7 @@
     const setTimeoutList = [];
     let clientList = [];
 
-    const audioPlayer = new Audio();
+    const audioPlayer = document.getElementById('audio1')//new Audio();
 
     function x(arr) {
         const currentTime = audioPlayer.currentTime;
@@ -114,7 +114,9 @@
         }
     }
 
+    let joined = false;
     const audioToggleHandler = (arg = "start") => {
+        joined = true;
         audioToggleHandler1();
         return;
         if (arg === "start") {
@@ -236,11 +238,18 @@
 
     {#each clientList as client}
         <div class="item {client.activity}" style="height: {height}px; width: {height}px; margin: 10px; flex-shrink: 0">
-            <div class="circle" on:click={_ => audioToggleHandler()}>
-
+            <div class="circle">
+                {#if id == client.id}
+                    <div>You</div>
+                {/if}
             </div>
         </div>
     {/each}
+
+    {#if clientList.length>=2 && !joined}
+        <button on:click={_ => audioToggleHandler()} style="position: fixed; bottom: 10px">Join the call</button>
+    {/if}
+
 
 </main>
 
@@ -269,5 +278,10 @@
         width: 50%;
         border-radius: 50%;
         background: grey;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 36px;
+        color: white;
     }
 </style>
