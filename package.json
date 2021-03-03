@@ -11,6 +11,7 @@
   },
   "devDependencies": {
     "@beyonk/svelte-carousel": "^2.8.0",
+    "@cycle/dom": "^22.8.0",
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-node-resolve": "^11.0.0",
     "rollup": "^2.3.4",
@@ -18,12 +19,15 @@
     "rollup-plugin-livereload": "^2.0.0",
     "rollup-plugin-svelte": "^7.0.0",
     "rollup-plugin-terser": "^7.0.0",
-    "svelte": "^3.0.0"
+    "svelte": "^3.0.0",
+    "xstream": "^11.14.0"
   },
   "dependencies": {
-    "sirv-cli": "^1.0.0",
+    "@cycle/run": "^5.5.0",
+    "@mjyc/voice-activity-detection": "^1.0.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "sirv-cli": "^1.0.0",
     "socket.io": "^3.0.3"
   }
 }

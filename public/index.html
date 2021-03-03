@@ -11,18 +11,36 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
           integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
           crossorigin="anonymous"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
     <script src="js/audiodisplay.js"></script>
     <script src="js/recorder.js"></script>
     <script src="js/main.js"></script>
-    <script src="https://unpkg.com/wavesurfer.js@4.5.0/dist/wavesurfer.js"></script>
-    <script src="https://unpkg.com/wavesurfer.js@4.5.0/dist/plugin/wavesurfer.microphone.min.js"></script>
+    <!--    <script src="https://unpkg.com/wavesurfer.js@4.5.0/dist/wavesurfer.js"></script>-->
+    <!--    <script src="https://unpkg.com/wavesurfer.js@4.5.0/dist/plugin/wavesurfer.microphone.min.js"></script>-->
     <script defer src='/build/bundle.js'></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.2/socket.io.js" integrity="sha512-YybopSVjZU0fe8TY4YDuQbP5bhwpGBE/T6eBUEZ0usM72IWBfWrgVI13qfX4V2A/W7Hdqnm7PIOYOwP9YHnICw==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.2/socket.io.js"
+            integrity="sha512-YybopSVjZU0fe8TY4YDuQbP5bhwpGBE/T6eBUEZ0usM72IWBfWrgVI13qfX4V2A/W7Hdqnm7PIOYOwP9YHnICw=="
+            crossorigin="anonymous"></script>
 </head>
+
+<style>
+    html, body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+    }
+</style>
+<i style="display: none" id="app"></i>
+<style>
+    #app {
+        display: none !important;
+    }
+
+</style>
 
 <body>
 
-<audio controls src="" id="socketTest"></audio>
 </body>
 </html>

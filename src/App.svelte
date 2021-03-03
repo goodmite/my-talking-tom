@@ -6,6 +6,7 @@
     import {ERECORDING_STATE} from "./typing/recording-state";
     import {audio2} from "./audio2";
     import WaveForms from "./WaveForms.svelte";
+    import {init} from "./activity";
 
 
     export let name;
@@ -18,10 +19,12 @@
     let audio2Obj;
     window._local = false;
 
-    let socket = window.io("https://talking-tom.herokuapp.com");
+    let id = Date.now();
+    let socket = window.io("https://talking-tom.herokuapp.com", {query: {id}});
     // let socket = window.io("http://localhost:3000");
     const chunks = [];
-    const setTimeoutList = []
+    const setTimeoutList = [];
+    let clientList = [];
 
     const audioPlayer = new Audio();
 
@@ -47,8 +50,17 @@
         }, 0);
         setTimeoutList.push(ref);
     });
-    socket.on('connect_done', function () {
-        alert("YOU ARE CONNECTED")
+    socket.on('connect_done', function (data) {
+        clientList = data.clients;
+        console.log(data);
+    })
+    socket.on('disconnect_done', function (data) {
+        clientList = data.clients;
+        console.log(data);
+    })
+    socket.on('activity', function (data) {
+        clientList = data.clients;
+        console.log(data);
     })
     socket.on('stopped', function () {
         audioPlayer.pause();
@@ -58,6 +70,9 @@
     var seconds = 0;
     var el = document.getElementById('seconds-counter');
     let intervalRef;
+    init((activity) => {
+        socket.emit('activity', {activity, id});
+    })
 
     function incrementSeconds() {
         seconds += 1;
@@ -191,109 +206,68 @@
             audio.pause();
         }
     }
+    let height = "";
+    const getWidth = () => {
+        height = document.body.getBoundingClientRect().height / clientList.length;
+    }
+    $:{
+        try {
+            if (clientList.length) {
+                height = document.body.getBoundingClientRect().height / clientList.length - 10;
+                height = Math.max(180, height);
+            }
+        } catch (e) {
+            debugger;
+        }
+    }
 </script>
 
 <main class="container">
-    <button style="display: none" bind:this={button}>hello</button>
-    <Banner playButtonClickedCb="{playButtonClickedCb}"
-            seconds="{seconds}"
-            button="{button}" img="{'./img/' + mode + '.svg'}" mode="{mode}"
-            playable="{playable}" blob1="{blob}">
-    </Banner>
+    <div class="toolbar" style="display: none">
+        <button class="js-record button button--record"><i class="fa fa-microphone" aria-hidden="true"></i>
+        </button>
+        <button class="js-play button button--play button--disabled"><i class="fa fa-play"
+                                                                        aria-hidden="true"></i>
+        </button>
+        <audio id="audio2" src=""></audio>
+        <audio class="js-audio audio audio--hidden" controls/>
+        <canvas class="js-canvas"></canvas>
+    </div>
 
-    <div class="app-body-comp-wrapper" style="display: flex; flex-direction: column; position: relative">
-        {#if view === 'waveform'}
-            <div style="width: 100%">
-                <div style="display: flex;justify-content: flex-end;">
-                    <i on:click="{_ => { viewChangeHandler('default')}}"
-                       style="padding: 8px; color: blue; cursor: pointer; opacity: 0.8"
-                       class="fa fa-times"></i>
-                </div>
-                <div style="width: 100%; height: 100px; display: flex; flex-direction: column; justify-content: center">
-                    <WaveForms bind:seekTo={seekTo} seekToChangedCb="{seekToChangedCb}" bind:this={waveForms1}
-                               blob="{blobInitial}"
-                               button="{button}"/>
-                </div>
-                <div style="width: 100%; height: 100px; display: flex; flex-direction: column; justify-content: center">
-                    <WaveForms bind:seekTo={seekTo} seekToChangedCb="{seekToChangedCb}" bind:this={waveForms2}
-                               blob="{blobFinal}"
-                               button="{button}"/>
-                </div>
-            </div>
-        {/if}
-        <div class="recorder" style="position: absolute; top: 0">
-            {#if view === "default"}
-                <div class="waveform" style="z-index: -1">
-                    <canvas height="50" class="js-canvas waveform__canvas"></canvas>
-                </div>
-            {/if}
-            <div class="toolbar" style="display: none">
-                <button class="js-record button button--record"><i class="fa fa-microphone" aria-hidden="true"></i>
-                </button>
-                <button class="js-play button button--play button--disabled"><i class="fa fa-play"
-                                                                                aria-hidden="true"></i>
-                </button>
-                <audio id="audio2" src=""></audio>
-                <audio class="js-audio audio audio--hidden" controls/>
+    {#each clientList as client}
+        <div class="item {client.activity}" style="height: {height}px; width: {height}px; margin: 10px; flex-shrink: 0">
+            <div class="circle" on:click={_ => audioToggleHandler()}>
+
             </div>
         </div>
-
-        {#if view === "default"}
-            <AppBody recording="{RECORDING_STATE}" audioToggleHandler="{audioToggleHandler}"/>
-        {/if}
-    </div>
-    <!--    <div class="mode-comp-wrapper">-->
-
-    <div class="{view !== 'default' && 'pointer-events-none'}">
-        <Modes changeModeFn="{changeMode}" mode="{mode}"/>
-    </div>
-
-    <!--    </div>-->
+    {/each}
 
 </main>
 
 <style>
     .container {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        width: 50vh;
-        height: 90vh;
-        background: wheat;
-        border-radius: 16px;
-        overflow: hidden;
         display: flex;
-        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-content: center;
+        max-width: 660px;
     }
 
-    @media only screen and (max-width: 600px) {
-        .container {
-            width: 100vw;
-            height: 100vh;
-            border-radius: 0px;
-        }
-    }
-
-    .app-body-comp-wrapper {
-        flex-grow: 1;
+    .item {
+        background: lightgrey;
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
-    .mode-comp-wrapper {
-        flex-grow: 1;
+    .ACTIVE .circle {
+        background: red;
     }
 
-    .d-none {
-        visibility: hidden !important;
+    .circle {
+        height: 50%;
+        width: 50%;
+        border-radius: 50%;
+        background: grey;
     }
-
-    .pointer-events-none {
-        pointer-events: none;
-        opacity: 0.4;
-        cursor: not-allowed;
-    }
-
 </style>

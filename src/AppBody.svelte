@@ -1,9 +1,11 @@
 <script>
 
     import {ERECORDING_STATE} from "./typing/recording-state";
+    import {init} from "./activity";
 
     export let recording;
     export let audioToggleHandler;
+
     const clickHandler = () => {
         console.log("================================");
         if (recording === ERECORDING_STATE.RECORDING) {
