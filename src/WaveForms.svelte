@@ -44,7 +44,7 @@
 
     $:{
         if (blob && wavesurfer && !initDone) {
-            console.log("hello1111111111");
+            //console.log("hello1111111111");
             initDone = true;
             wavesurfer.load(blob);
             wavesurfer.toggleMute();

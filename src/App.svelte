@@ -38,7 +38,7 @@
     }
 
     socket.on('chat message', function ({data, timestamp}) {
-        console.log((Date.now() - timestamp) / 1000 + " sec delay in this RECEIVING this packet");
+        //console.log((Date.now() - timestamp) / 1000 + " sec delay in this RECEIVING this packet");
         chunks.push(data);
         /*always play latest packet, ignore stale packets*/
         const ref = setTimeout(() => {
@@ -52,15 +52,15 @@
     });
     socket.on('connect_done', function (data) {
         clientList = data.clients;
-        console.log(data);
+        //console.log(data);
     })
     socket.on('disconnect_done', function (data) {
         clientList = data.clients;
-        console.log(data);
+        //console.log(data);
     })
     socket.on('activity', function (data) {
         clientList = data.clients;
-        console.log(data);
+        //console.log(data);
     })
     socket.on('stopped', function () {
         audioPlayer.pause();
@@ -131,7 +131,7 @@
                 setTimeout(() => {
                     saveAudio(_ => alert())
                         .then((blob) => {
-                            console.log(blob);
+                            //console.log(blob);
                             const reader = new FileReader();
                             reader.readAsDataURL(blob);
                             reader.onloadend = function () {
@@ -171,7 +171,7 @@
                                 }, 1000)
 
                                 setTimeout(() => {
-                                    console.log(button);
+                                    //console.log(button);
                                     button.click();
                                 }, 1000);
                                 RECORDING_STATE = ERECORDING_STATE.DEFAULT;

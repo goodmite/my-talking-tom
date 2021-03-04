@@ -102,7 +102,7 @@ const audio2 = function ({
     // Save chunks of the incomming audio to the chuncks array
     const saveChunkToRecording = event => {
         chunks.push(event.data);
-        console.log("-------", event.data);
+        //console.log("-------", event.data);
         dataReceived(event.data);
     }
 

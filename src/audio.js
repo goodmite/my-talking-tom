@@ -68,7 +68,7 @@ function doneEncoding(blob) {
 }
 
 export function toggleRecording(recording) {
-    console.log("sadasdasdasd")
+    //console.log("sadasdasdasd")
 
     if (recording) {
         // stop recording
@@ -194,7 +194,7 @@ export function initAudio() {
             },
         }, gotStream, function (e) {
             alert('Error getting audio');
-            console.log(e);
+            //console.log(e);
         });
 }
 

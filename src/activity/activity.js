@@ -2,7 +2,7 @@
 
 import xs from "xstream";
 import vad from "@mjyc/voice-activity-detection"
-console.log(vad);
+//console.log(vad);
 debugger;
 
 export default function makeVoiceActivityDetectionDriver(options) {

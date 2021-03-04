@@ -7,7 +7,7 @@
     export let audioToggleHandler;
 
     const clickHandler = () => {
-        console.log("================================");
+        //console.log("================================");
         if (recording === ERECORDING_STATE.RECORDING) {
             audioToggleHandler('stop');
         } else if (recording === ERECORDING_STATE.DEFAULT) {

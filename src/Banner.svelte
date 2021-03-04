@@ -13,7 +13,7 @@
     export let playButtonClickedCb;
 
     function log(x) {
-        console.log(x);
+        //console.log(x);
     }
 
     const playButtonClicked = () => {

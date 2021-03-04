@@ -20,7 +20,7 @@ io.on('connection', (socket) => {
     const id = socket.handshake.query.id;
     clients.push(socket.handshake.query);
     io.emit("connect_done", {clients});
-    console.log(clients);
+    //console.log(clients);
     socket.on('chat message', msg => {
         socket.broadcast.emit('chat message', msg);
     });
@@ -33,18 +33,18 @@ io.on('connection', (socket) => {
     // });
     socket.on('activity', function ({activity}) {
         const index = clients.findIndex(e => e.id === id);
-        console.log('-----', clients, id, index);
+        //console.log('-----', clients, id, index);
         clients[index].activity = activity;
         io.emit('activity', {clients});
     });
     socket.on('disconnect', function () {
         clients = clients.filter(e => e.id !== id);
         io.emit("disconnect_done", {clients});
-        console.log(clients);
+        //console.log(clients);
         io.emit('connected');
     });
 });
 
 http.listen(port, () => {
-    console.log(`Socket.IO server running at http://localhost:${port}/`);
+    //console.log(`Socket.IO server running at http://localhost:${port}/`);
 });
