@@ -102,6 +102,7 @@ const audio2 = function ({
     // Save chunks of the incomming audio to the chuncks array
     const saveChunkToRecording = event => {
         chunks.push(event.data);
+        console.log("-------", event.data);
         dataReceived(event.data);
     }
 
@@ -120,7 +121,7 @@ const audio2 = function ({
     const startRecording = () => {
         isRecording = true;
         recordButton.classList.add('button--active');
-        recorder.start(1000);
+        recorder.start(100);
     }
     // recorder.start();
 
