@@ -121,7 +121,7 @@ const audio2 = function ({
     const startRecording = () => {
         isRecording = true;
         recordButton.classList.add('button--active');
-        recorder.start(100);
+        recorder.start(1000);
     }
     // recorder.start();
 
